@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Progress</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loadingMessage">Redirecting...</div>
+    <iframe id="contentFrame" src="https://script.google.com/macros/s/AKfycbxkBmUglWfZjws-40aGneXr4aGDo2DUQplaESp-2Ho3TObh6QU6wPV0e54L2CQwlmz_/exec" style="display:none;"></iframe>
+
+    <script>
+        // AUTOMATIC REDIRECT dari .pages.dev ke custom domain
+        (function() {
+            var currentHostname = window.location.hostname;
+            
+            // Cek apakah sedang diakses dari .pages.dev
+            if (currentHostname.includes('.pages.dev')) {
+                // Redirect PAKSA ke custom domain
+                var newUrl = 'https://jayproject.site' + window.location.pathname + window.location.search;
+                
+                // Gunakan replace agar user tidak bisa back ke .pages.dev
+                window.location.replace(newUrl);
+                
+                // Stop eksekusi script
+                return;
+            }
+            
+            // Jika bukan dari .pages.dev, tampilkan iframe
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('contentFrame').style.display = 'block';
+        })();
+    </script>
+</body>
+</html>
